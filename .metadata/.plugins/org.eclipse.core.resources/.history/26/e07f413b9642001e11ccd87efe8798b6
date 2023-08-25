@@ -1,0 +1,13 @@
+package com.examplemicroservice.user.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.examplemicroservice.user.repository.UserRepository;
+
+public class UserService {
+
+	@Autowired
+	private UserRepository userRepository;
+	
+	
+}

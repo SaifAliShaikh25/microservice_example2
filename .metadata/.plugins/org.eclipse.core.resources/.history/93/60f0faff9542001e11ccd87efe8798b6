@@ -1,0 +1,5 @@
+package com.examplemicroservice.user.repository;
+
+public interface UserRepository {
+
+}

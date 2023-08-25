@@ -1,0 +1,48 @@
+package com.examplemicroservice.user.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.examplemicroservice.user.VO.Department;
+import com.examplemicroservice.user.VO.ResponseTemplateVO;
+import com.examplemicroservice.user.entity.Users;
+import com.examplemicroservice.user.repository.UserRepository;
+
+@Service
+public class UserService {
+
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private RestTemplate restTemplate;
+
+	public Users saveUser(Users user) {
+
+		return userRepository.save(user);
+	}
+
+	public Users findUserById(Long userId) {
+
+		return userRepository.findByUserId(userId);
+	}
+
+	public ResponseTemplateVO getUserWithDepartment(Long userId) {
+		// TODO Auto-generated method stub
+		ResponseTemplateVO vo = new ResponseTemplateVO();
+		Users user = userRepository.findByUserId(userId);
+		vo.setUser(user);
+		System.out.println("USers - "+user.toString());
+	
+//		Department department = restTemplate.getForObject("http://localhost:9001/departments/"+user.getDepartmentId(), Department.class); 
+		String departmentUrl = "http://localhost:9001/departments/"+userId;
+		System.out.println("Department url  - "+departmentUrl);
+		Department department = restTemplate.getForObject(departmentUrl, Department.class); 
+//		System.out.println("Department - "+department.toString());
+		vo.setDepartment(department);
+		return vo;
+	}
+	
+	
+}

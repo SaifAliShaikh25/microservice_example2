@@ -1,0 +1,11 @@
+package com.examplemicroservice.user.entity;
+
+public class Users {
+
+	private Long userId;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private Long departmentId;
+	
+}

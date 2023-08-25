@@ -1,0 +1,43 @@
+package com.examplemicroservice.user.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.examplemicroservice.user.VO.Department;
+import com.examplemicroservice.user.VO.ResponseTemplateVO;
+import com.examplemicroservice.user.entity.Users;
+import com.examplemicroservice.user.repository.UserRepository;
+
+@Service
+public class UserService {
+
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private RestTemplate restTemplate;
+
+	public Users saveUser(Users user) {
+
+		return userRepository.save(user);
+	}
+
+	public Users findUserById(Long userId) {
+
+		return userRepository.findByUserId(userId);
+	}
+
+	public ResponseTemplateVO getUserWithDepartment(Long userId) {
+
+		ResponseTemplateVO vo = new ResponseTemplateVO();
+		Users user = userRepository.findByUserId(userId);
+		vo.setUser(user);
+
+		Department department = restTemplate.getForObject("http://localhost:9001/departments/"+user.getDepartmentId(), Department.class); 
+		vo.setDepartment(department);
+		return vo;
+	}
+	
+	
+}

@@ -1,0 +1,5 @@
+package com.examplemicroservice.user.controller;
+
+public class UserController {
+
+}

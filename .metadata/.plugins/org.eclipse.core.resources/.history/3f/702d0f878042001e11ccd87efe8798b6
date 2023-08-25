@@ -1,0 +1,5 @@
+package com.examplemicroservice.department.repository;
+
+public class DepartmentRepository {
+
+}

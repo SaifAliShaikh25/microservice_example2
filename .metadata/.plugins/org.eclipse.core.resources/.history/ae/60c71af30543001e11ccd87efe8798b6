@@ -1,0 +1,5 @@
+package com.examplemicroservice.user.VO;
+
+public class Department {
+
+}
