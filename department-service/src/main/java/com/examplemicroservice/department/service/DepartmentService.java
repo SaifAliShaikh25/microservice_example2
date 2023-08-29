@@ -1,5 +1,7 @@
 package com.examplemicroservice.department.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +22,10 @@ public class DepartmentService {
 	public Department findDepartmentById(Long departmentId) {
 
 		return departmentRepository.findByDepartmentId(departmentId);
+	}
+
+	public List<Department> getDepartments() {
+	
+		return departmentRepository.findAll();
 	}
 }

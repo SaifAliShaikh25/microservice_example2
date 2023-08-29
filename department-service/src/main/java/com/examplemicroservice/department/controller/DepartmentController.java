@@ -1,5 +1,7 @@
 package com.examplemicroservice.department.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,5 +34,11 @@ public class DepartmentController {
 	public Department findDepartmentById(@PathVariable("id") Long departmentId) {
 		
 		return departmentService.findDepartmentById(departmentId);
+	}
+	
+	@GetMapping("/all")
+	public List<Department> getAllDepartments(){
+		
+		return departmentService.getDepartments();
 	}
 }
